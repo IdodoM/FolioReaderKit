@@ -412,7 +412,7 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
             }
             
             if tag.name == "dc:date" {
-                metadata.dates.append(Date(date: tag.value ?? "", event: tag.attributes["opf:event"] ?? ""))
+                metadata.dates.append(FRDate(date: tag.value ?? "", event: tag.attributes["opf:event"] ?? ""))
             }
             
             if tag.name == "meta" {

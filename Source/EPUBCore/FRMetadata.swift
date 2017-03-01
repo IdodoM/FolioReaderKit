@@ -11,12 +11,12 @@ import UIKit
 /**
 Represents one of the authors of the book.
 */
-struct Author {
-    var name: String!
-    var role: String!
-    var fileAs: String!
+public struct Author {
+    public var name: String!
+    public var role: String!
+    public var fileAs: String!
     
-    init(name: String, role: String, fileAs: String) {
+    public init(name: String, role: String, fileAs: String) {
         self.name = name
         self.role = role
         self.fileAs = fileAs
@@ -26,12 +26,12 @@ struct Author {
 /**
 A Book's identifier.
 */
-struct Identifier {
-    var id: String?
-    var scheme: String?
-    var value: String?
+public struct Identifier {
+    public var id: String?
+    public var scheme: String?
+    public var value: String?
     
-    init(id: String?, scheme: String?, value: String?) {
+    public init(id: String?, scheme: String?, value: String?) {
         self.id = id
         self.scheme = scheme
         self.value = value
@@ -41,11 +41,11 @@ struct Identifier {
 /**
 A date and his event.
 */
-struct Date {
-    var date: String!
-    var event: String!
+public struct FRDate {
+    public var date: String!
+    public var event: String!
     
-    init(date: String, event: String!) {
+    public init(date: String, event: String!) {
         self.date = date
         self.event = event
     }
@@ -54,26 +54,26 @@ struct Date {
 /**
 A metadata tag data.
 */
-struct Meta {
-    var name: String?
-    var content: String?
-    var id: String?
-    var property: String?
-    var value: String?
-    var refines: String?
+public struct Meta {
+    public var name: String?
+    public var content: String?
+    public var id: String?
+    public var property: String?
+    public var value: String?
+    public var refines: String?
     
-    init(name: String, content: String) {
+    public init(name: String, content: String) {
         self.name = name
         self.content = content
     }
     
-    init(id: String, property: String, value: String) {
+    public init(id: String, property: String, value: String) {
         self.id = id
         self.property = property
         self.value = value
     }
 
-    init(property: String, value: String, refines: String!) {
+    public init(property: String, value: String, refines: String!) {
         self.property = property
         self.value = value
         self.refines = refines
@@ -83,19 +83,19 @@ struct Meta {
 /**
 Manages book metadata.
 */
-class FRMetadata: NSObject {
-    var creators = [Author]()
-    var contributors = [Author]()
-    var dates = [Date]()
-    var language = "en-US"
-    var titles = [String]()
-    var identifiers = [Identifier]()
-    var subjects = [String]()
-    var descriptions = [String]()
-    var publishers = [String]()
-    var format = FRMediaType.EPUB.name
-    var rights = [String]()
-    var metaAttributes = [Meta]()
+public class FRMetadata: NSObject {
+    public var creators = [Author]()
+    public var contributors = [Author]()
+    public var dates = [FRDate]()
+    public var language = "en-US"
+    public var titles = [String]()
+    public var identifiers = [Identifier]()
+    public var subjects = [String]()
+    public var descriptions = [String]()
+    public var publishers = [String]()
+    public var format = FRMediaType.EPUB.name
+    public var rights = [String]()
+    public var metaAttributes = [Meta]()
     
     /**
      Find a book unique identifier by ID
@@ -103,7 +103,7 @@ class FRMetadata: NSObject {
      - parameter id: The ID
      - returns: The unique identifier of a book
      */
-    func findIdentifierById(_ id: String?) -> String? {
+    public func findIdentifierById(_ id: String?) -> String? {
         guard let id = id else { return nil }
         
         for identifier in identifiers {
@@ -114,7 +114,7 @@ class FRMetadata: NSObject {
         return nil
     }
     
-    func findMetaByName(_ name: String) -> String? {
+    public func findMetaByName(_ name: String) -> String? {
         guard !name.isEmpty else { return nil }
         
         for meta in metaAttributes {
@@ -125,7 +125,7 @@ class FRMetadata: NSObject {
         return nil
     }
 
-    func findMetaByProperty(_ property: String, refinedBy: String?) -> String? {
+    public func findMetaByProperty(_ property: String, refinedBy: String?) -> String? {
         guard !property.isEmpty else { return nil }
 
         for meta in metaAttributes {
@@ -141,7 +141,7 @@ class FRMetadata: NSObject {
         return nil
     }
 
-    func findMetaByProperty(_ property: String) -> String? {
+    public func findMetaByProperty(_ property: String) -> String? {
         return findMetaByProperty(property, refinedBy: nil);
     }
 

@@ -8,13 +8,13 @@
 
 import UIKit
 
-class FRResources: NSObject {
-    var resources = [String: FRResource]()
+open class FRResources: NSObject {
+    public var resources = [String: FRResource]()
     
     /**
      Adds a resource to the resources.
     */
-    func add(_ resource: FRResource) {
+    public func add(_ resource: FRResource) {
         self.resources[resource.href] = resource
     }
     
@@ -25,7 +25,7 @@ class FRResources: NSObject {
     
      Useful for looking up the table of contents as it's supposed to be the only resource with NCX mediatype.
     */
-    func findByMediaType(_ mediaType: MediaType) -> FRResource? {
+    public func findByMediaType(_ mediaType: MediaType) -> FRResource? {
         for resource in resources.values {
             if resource.mediaType != nil && resource.mediaType == mediaType {
                 return resource
@@ -39,7 +39,7 @@ class FRResources: NSObject {
      
      Useful for looking up the table of contents as it's supposed to be the only resource with NCX extension.
      */
-    func findByExtension(_ ext: String) -> FRResource? {
+    public func findByExtension(_ ext: String) -> FRResource? {
         for resource in resources.values {
             if resource.mediaType != nil && resource.mediaType.defaultExtension == ext {
                 return resource
@@ -54,7 +54,7 @@ class FRResources: NSObject {
      - parameter properties: ePub 3 properties. e.g. `cover-image`, `nav`
      - returns: The Resource.
      */
-    func findByProperties(_ properties: String) -> FRResource? {
+    public func findByProperties(_ properties: String) -> FRResource? {
         for resource in resources.values {
             if resource.properties == properties {
                 return resource
@@ -66,7 +66,7 @@ class FRResources: NSObject {
     /**
      Gets the resource with the given href.
      */
-    func findByHref(_ href: String) -> FRResource? {
+    public func findByHref(_ href: String) -> FRResource? {
         guard !href.isEmpty else { return nil }
         
         // This clean is neede because may the toc.ncx is not located in the root directory
@@ -77,7 +77,7 @@ class FRResources: NSObject {
     /**
      Gets the resource with the given href.
      */
-    func findById(_ id: String?) -> FRResource? {
+    public func findById(_ id: String?) -> FRResource? {
         guard let id = id else { return nil }
         
         for resource in resources.values {
@@ -91,7 +91,7 @@ class FRResources: NSObject {
     /**
      Whether there exists a resource with the given href.
     */
-    func containsByHref(_ href: String) -> Bool {
+    public func containsByHref(_ href: String) -> Bool {
         guard !href.isEmpty else { return false }
         
         return resources.keys.contains(href)
@@ -100,7 +100,7 @@ class FRResources: NSObject {
     /**
      Whether there exists a resource with the given id.
     */
-    func containsById(_ id: String?) -> Bool {
+    public func containsById(_ id: String?) -> Bool {
         guard let id = id else { return false }
         
         for resource in resources.values {

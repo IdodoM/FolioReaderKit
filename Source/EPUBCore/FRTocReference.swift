@@ -8,17 +8,17 @@
 
 import UIKit
 
-class FRTocReference: NSObject {
-    var resource: FRResource?
-    var title: String!
-    var fragmentID: String?
-    var children: [FRTocReference]!
+public class FRTocReference: NSObject {
+    public var resource: FRResource?
+    public var title: String!
+    public var fragmentID: String?
+    public var children: [FRTocReference]!
     
-    convenience init(title: String, resource: FRResource?, fragmentID: String = "") {
+    public convenience init(title: String, resource: FRResource?, fragmentID: String = "") {
         self.init(title: title, resource: resource, fragmentID: fragmentID, children: [FRTocReference]())
     }
     
-    init(title: String, resource: FRResource?, fragmentID: String, children: [FRTocReference]) {
+    public init(title: String, resource: FRResource?, fragmentID: String, children: [FRTocReference]) {
         self.resource = resource
         self.title = title
         self.fragmentID = fragmentID
@@ -28,6 +28,6 @@ class FRTocReference: NSObject {
 
 // MARK: Equatable
 
-func ==(lhs: FRTocReference, rhs: FRTocReference) -> Bool {
+public func ==(lhs: FRTocReference, rhs: FRTocReference) -> Bool {
     return lhs.title == rhs.title && lhs.fragmentID == rhs.fragmentID
 }
